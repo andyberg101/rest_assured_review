@@ -1,9 +1,8 @@
 import Utils.ApiWrapper;
 import Utils.TestDataHelper;
-import org.example.UserTemplate;
+import org.example.NewUser;
 import org.junit.jupiter.api.Test;
-import static Utils.ApiWrapper.deleteRequest;
-import static Utils.ApiWrapper.sendGetRequest;
+import static Utils.ApiWrapper.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -14,22 +13,21 @@ public class UsersTest extends RestassureBaseTest {
     @Test
     public void getListOfObjects() {
         sendGetRequest(
-                getConfig("resourcesPath_v2")
-                        + getConfig("endPointUsers"))
+                getConfig("fullPath_v2"))
                 .assertThat()
                 .body("$", hasSize(10)
                 );
     }
 
     @Test
-    public void getListParamObjectsUsers() {
+    public void getParamOfUsers() {
         String page = "5";
         String perPage = "50";
 
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                (getConfig("objectPathV2")
+                        (getConfig("resourcesPath_v2")
                         + getConfig("endPointUsers")
                         + "?page={page}&per_page={perPage}")
         )
@@ -53,12 +51,15 @@ public class UsersTest extends RestassureBaseTest {
     @Test
     public void CreateNewUsers() {
 
-    UserTemplate expectedUser = TestDataHelper.createUser();
-        UserTemplate actualUser =
-                ApiWrapper.sendPostRequest(getConfig("fullPath_v2"), expectedUser));
+      NewUser newUser = TestDataHelper.createUser();
+      NewUser  actualUser =
+          ApiWrapper.sendPostRequest(
+                getConfig("fullPath_v2"),
+                newUser,
+                NewUser.class
+          );
 
-
-        assertEquals(expectedUser, actualUser);
+      assertEquals(actualUser, newUser);
     }
 
     @Test
@@ -68,9 +69,8 @@ public class UsersTest extends RestassureBaseTest {
 
         deleteRequest(
                 given().pathParams("id", userId),
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath"),
-                getConfig("objectToken")
+                getConfig("resourcesPath_v2")
+                        + getConfig("objectIdPath")
         );
     }
 }

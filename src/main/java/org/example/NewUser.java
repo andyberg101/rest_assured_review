@@ -1,6 +1,6 @@
 package org.example;
 
-public class UserTemplate {
+public class NewUser {
     private int id;
     private String name;
     private String email;
@@ -8,11 +8,11 @@ public class UserTemplate {
     private String gender;
 
 
-    public int getUserID() {
+    public int getID() {
         return id;
     }
 
-    public void setUserID(int value) {
+    public void setID(int value) {
         this.id = value;
     }
 
@@ -52,11 +52,22 @@ public class UserTemplate {
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
-        if (!(object instanceof UserTemplate userTemplate)) return false;
+        if (!(object instanceof NewUser newUser)) return false;
         return
-                getName().equals(userTemplate.getName()) &&
-                getEmail().equals(userTemplate.getEmail())&&
-                getGender().equals(userTemplate.getGender())&&
-                getStatus().equals(userTemplate.getStatus());
+                getName().equals(newUser.getName()) &&
+                        getEmail().equals(newUser.getEmail()) &&
+                        getGender().equals(newUser.getGender()) &&
+                        getStatus().equals(newUser.getStatus());
+    }
+
+    @Override
+    public String toString() {
+        return "NewUser{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
