@@ -32,7 +32,7 @@ public class RestassureBaseTest {
     }
 
     public   static int getID(String endPoint, String nameId) {
-        String path = "[2]." + nameId;
+        String path = "[0]." + nameId;
         return
                 given()
                         .when()

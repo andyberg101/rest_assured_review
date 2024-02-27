@@ -21,8 +21,8 @@ public class UsersTest extends RestassureBaseTest {
 
     @Test
     public void getParamOfUsers() {
-        String page = "5";
-        String perPage = "50";
+        String page = "2";
+        String perPage = "40";
 
         sendGetRequest(
                 given().pathParams("page", page,

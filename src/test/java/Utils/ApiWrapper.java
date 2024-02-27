@@ -67,13 +67,13 @@ public class ApiWrapper {
 
 
     public static void sendPatchRequest(RequestSpecification requestSpecification,
-                                        String nameCheckedField,
-                                        String valueCheckedField,
+                                        String nameCreateField,
+                                        String textCreateField,
                                         String callPath) {
         given()
                 .filter(new AuthenticationFilter(TOKEN))
                 .spec(requestSpecification)
-                .body("{ \"" + nameCheckedField + "\": \"" + valueCheckedField + "\" }")
+                .body("{ \"" + nameCreateField + "\": \"" + textCreateField + "\" }")
                 .contentType(ContentType.JSON)
                 //.log().all()
                 .when()
@@ -83,7 +83,7 @@ public class ApiWrapper {
                 .statusCode(DEFAULT_STATUS_CODE_PATCH)
                 .contentType(ContentType.JSON)
                 .log().ifValidationFails()
-                .body(nameCheckedField, equalTo(valueCheckedField));
+                .body(nameCreateField, equalTo(textCreateField));
     }
 
 
@@ -93,18 +93,16 @@ public class ApiWrapper {
         return given()
                 .spec(requestSpecification)
                 .when()
-                //.log().all()
                 .get(callPath)
                 .then()
                 .statusCode(statusCode)
                 .contentType(ContentType.JSON)
-                //.log().all()
                 .log().ifValidationFails();
     }
-
-    public static ValidatableResponse sendGetRequest(String callPath, int statusCode) {
-        return sendGetRequest(given(), callPath, statusCode);
-    }
+//
+//    public static ValidatableResponse sendGetRequest(String callPath, int statusCode) {
+//        return sendGetRequest(given(), callPath, statusCode);
+//    }
 
     public static ValidatableResponse sendGetRequest(RequestSpecification requestSpecification, String callPath) {
         return sendGetRequest(requestSpecification, callPath, DEFAULT_STATUS_CODE_GET);
@@ -121,7 +119,6 @@ public class ApiWrapper {
                 .filter(new AuthenticationFilter(TOKEN))
                 .spec(requestSpecification)
                 .when()
-                //.log().all()
                 .delete(callPath)
                 .then()
                 .log().ifValidationFails()

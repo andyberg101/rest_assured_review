@@ -20,7 +20,7 @@ public class AuthenticationFilter implements Filter {
             FilterableResponseSpecification responseSpec,
             FilterContext ctx
     ) {
-        requestSpec.header("Authorization", "Howdy" + authToken);
+        requestSpec.header("Authorization", "Bearer " + authToken);
         return ctx.next(requestSpec, responseSpec);
     }
 }

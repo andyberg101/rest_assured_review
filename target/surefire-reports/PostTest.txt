@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Test set: PostTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 16.862 s <<< FAILURE! - in PostTest
+PostTest.putTitlePost  Time elapsed: 6.55 s  <<< ERROR!
+java.lang.IllegalArgumentException: Invalid number of path parameters. Expected 0, was 1. Redundant path parameters are: id=104799.
+	at PostTest.putTitlePost(PostTest.java:105)
+
+PostTest.deletePost  Time elapsed: 4.033 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <204> but was <404>.
+
+	at PostTest.deletePost(PostTest.java:70)
+
+PostTest.patchTitlePost  Time elapsed: 1.252 s  <<< ERROR!
+java.lang.IllegalArgumentException: Invalid number of path parameters. Expected 0, was 1. Redundant path parameters are: id=104799.
+	at PostTest.patchTitlePost(PostTest.java:85)
+
