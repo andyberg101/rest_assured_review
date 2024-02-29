@@ -2,8 +2,6 @@ package Utils;
 import com.github.javafaker.Faker;
 import org.example.NewUser;
 import org.example.Post;
-
-import javax.xml.crypto.Data;
 import static java.time.LocalDateTime.now;
 
 

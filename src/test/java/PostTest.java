@@ -29,8 +29,8 @@ public class PostTest extends RestassureBaseTest {
 
     @Test
     public void getParamOfPosts() {
-        String page = "4";
-        String perPage = "80";
+        String page = "5";
+        String perPage = "70";
 
         sendGetRequest(
                 given().pathParams("page", page,
@@ -87,7 +87,7 @@ public class PostTest extends RestassureBaseTest {
                 nameCreateField,
                 textCreateField,
                 getConfig("resourcesPath_v2")
-                        + getConfig("userPostIdPath")
+                        + getConfig("userPostIDPath")
         );
     }
     @Test
@@ -105,7 +105,7 @@ public class PostTest extends RestassureBaseTest {
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
                         getConfig("resourcesPath_v2")
-                                + getConfig("userPostIdPath"),
+                                + getConfig("userPostIDPath"),
                         newMessagePost,
                         Post.class
                 );

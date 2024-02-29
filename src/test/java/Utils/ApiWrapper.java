@@ -54,13 +54,11 @@ public class ApiWrapper {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                //.log().all()
                 .put(endpoint)
                 .then()
                 .assertThat()
                 .statusCode(DEFAULT_STATUS_CODE_PUT)
                 .contentType(ContentType.JSON)
-                //.log().all()
                 .log().ifValidationFails()
                 .extract().as(responseType);
     }
